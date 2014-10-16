@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  </head>
+<head>
+</head>
 
-  <body>
-    <script src="js/utils.js"></script>
-    <script>
+<body>
+<script src="js/utils.js"></script>
+<script>
 
-        var stooges = utils.extend({name:'moe'},{age:'52'});
+    var stooges = utils.extend({name:'moe'},{age:'50'});
+    console.dir(stooges);
 
-    </script>
-  </body>
+    var logger = function(msg) { console.log(msg); };
+    var loggerCall = function(){ logger('my mesagge'); };
+    utils.lazy(loggerCall, 2000);
+
+</script>
+</body>
 </html>

@@ -1,6 +1,10 @@
 // TODO implement utils module
 var utils = {};
 
+var globals = {
+  "timeOut":null
+}
+
 utils.bind = function(){};
 
 utils.extend = function(){
@@ -27,4 +31,9 @@ utils.extend = function(){
 
 utils.memorize = function(){};
 
-utils.lazy = function(){};
+utils.lazy = function(func, time){
+
+  clearTimeout(globals.timeOut);
+  globals.timeOut = setTimeout(func,time);
+
+};
