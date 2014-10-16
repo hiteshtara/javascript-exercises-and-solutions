@@ -5,7 +5,19 @@ var globals = {
   "timeOut":null
 }
 
-utils.bind = function(){};
+utils.bind = function(func, obj, greetings){
+
+	function NewFunc(func, obj, greetings) {
+	    this.func = func;
+	    this.name = obj.name;
+	    this.greetings = greetings;
+	}
+
+	var newFunc = new NewFunc(func,obj,greetings);
+
+	return newFunc;
+
+};
 
 utils.extend = function(){
 

@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8"/>
 </head>
 
 <body>
 <script src="js/utils.js"></script>
 <script>
 
-    var stooges = utils.extend({name:'moe'},{age:'50'});
-    console.dir(stooges);
+//    var stooges = utils.extend({name:'moe'},{age:'50'});
+//    console.dir(stooges);
+//
+//    var logger = function(msg) { console.log(msg); };
+//    var loggerCall = function(){ logger('my mesagge'); };
+//    utils.lazy(loggerCall, 2000);
 
-    var logger = function(msg) { console.log(msg); };
-    var loggerCall = function(){ logger('my mesagge'); };
-    utils.lazy(loggerCall, 2000);
+    var func = function(greeting){
+//        return greeting + ': ' + this.name;
+        console.log(greeting + ': ' + this.name);
+    };
+    func = utils.bind(func, {name : 'Matias'}, 'hi');
+
+    func.func(); //===> expected: "hi: Matias"
 
 </script>
 </body>
