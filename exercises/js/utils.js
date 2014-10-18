@@ -2,15 +2,15 @@
 var utils = {};
 
 var globals = {
-  "timeOut":null
+	"timeOut":null
 }
 
 utils.bind = function(func, obj, greetings){
 
 	function NewFunc(func, obj, greetings) {
-	    this.func = func;
-	    this.name = obj.name;
-	    this.greetings = greetings;
+		this.func = func;
+		this.name = obj.name;
+		this.greetings = greetings;
 	}
 
 	var newFunc = new NewFunc(func,obj,greetings);
@@ -21,23 +21,23 @@ utils.bind = function(func, obj, greetings){
 
 utils.extend = function(){
 
-  var obj = {};
+	var obj = {};
 
-  for(var i = 0; i < arguments.length; i++){
+	for(var i = 0; i < arguments.length; i++){
 
-    for(var key in arguments[i]){
+		for(var key in arguments[i]){
 
-      if(typeof arguments[i] === "object" && !obj.hasOwnProperty(key)){
+			if(typeof arguments[i] === "object" && !obj.hasOwnProperty(key)){
 
-        obj[key] = arguments[i][key];
+				obj[key] = arguments[i][key];
 
-      }
+			}
 
-    }
+		}
 
-  }
+	}
 
-  return obj;
+	return obj;
 
 };
 
@@ -45,7 +45,7 @@ utils.memorize = function(){};
 
 utils.lazy = function(func, time){
 
-  clearTimeout(globals.timeOut);
-  globals.timeOut = setTimeout(func,time);
+	clearTimeout(globals.timeOut);
+	globals.timeOut = setTimeout(func,time);
 
 };
