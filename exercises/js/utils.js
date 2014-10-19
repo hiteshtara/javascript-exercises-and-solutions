@@ -1,7 +1,9 @@
 // TODO implement utils module
 
 var globals = {
+
 	timeOut:null
+
 }
 
 function Utils(){ return this; };
@@ -55,9 +57,7 @@ Utils.prototype.memorize = function (fn) {
 
 			if(n in memo){
 
-				return function(){
-					console.log('987');
-				}
+				return
 
 			}else{
 
@@ -65,7 +65,6 @@ Utils.prototype.memorize = function (fn) {
 				return fn.apply(fn, arguments);
 
 			}
-
 
 		}
 
