@@ -8,19 +8,33 @@
 <script src="js/utils.js"></script>
 <script>
 
+    var fibonacci = function(n) {
+        console.log('Fib ' + n);
+        return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+    var memoizedFibonacci = utils.memorize(fibonacci);
+
+    memoizedFibonacci(5);
+    // 1st time, I should see "Fib 5",..,"Fib 0"
+    memoizedFibonacci(5);
+    // 2nd time, I shouldn't see any "Fib x" because the result should be cached
+
     var stooges = utils.extend({name:'moe'},{age:'50'});
-    console.dir(stooges);
+    console.dir(stooges) //should return a merged object
 
     var logger = function(msg) { console.log(msg); };
     var loggerCall = function(){ logger('my mesagge'); };
-    utils.lazy(loggerCall, 2000);
+
+    utils.lazy(loggerCall, 5000);
+    utils.lazy(loggerCall, 5000); // ==> should only see 1 "my message" log
 
     var func = function(greeting){
         console.log(greeting + ': ' + this.name);
     };
-    func = utils.bind(func, {name : 'Matias'}, 'hi');
 
-    func.func(); //===> expected: "hi: Matias"
+    func = utils.bind(func, {name : 'Matias'});
+    func('Hi'); //===> expected: "hi: Matias"
 
 </script>
 </body>

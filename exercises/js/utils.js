@@ -1,25 +1,12 @@
 // TODO implement utils module
-var utils = {};
 
 var globals = {
-	"timeOut":null
+	timeOut:null
 }
 
-utils.bind = function(func, obj, greetings){
+function Utils(){ return this; };
 
-	function NewFunc(func, obj, greetings) {
-		this.func = func;
-		this.name = obj.name;
-		this.greetings = greetings;
-	}
-
-	var newFunc = new NewFunc(func,obj,greetings);
-
-	return newFunc;
-
-};
-
-utils.extend = function(){
+Utils.prototype.extend = function () {
 
 	var obj = {};
 
@@ -41,11 +28,53 @@ utils.extend = function(){
 
 };
 
-utils.memorize = function(){};
+Utils.prototype.bind = function(func, obj){
 
-utils.lazy = function(func, time){
+	return function(){
+		return func.apply(obj, arguments);
+	};
+
+};
+
+Utils.prototype.lazy = function(func, time){
 
 	clearTimeout(globals.timeOut);
 	globals.timeOut = setTimeout(func,time);
 
 };
+
+Utils.prototype.memorize = function (fn) {
+
+	var memo = {}
+
+	return function(){
+
+		var n = arguments[0];
+
+		if(n !== 0 && n !== 1){
+
+			if(n in memo){
+
+				return function(){
+					console.log('987');
+				}
+
+			}else{
+
+				memo[n] = n;
+				return fn.apply(fn, arguments);
+
+			}
+
+
+		}
+
+	};
+
+
+}
+
+var utils = new Utils();
+
+
+////module.exports = utils;
