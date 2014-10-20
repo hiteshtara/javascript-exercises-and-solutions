@@ -1,9 +1,9 @@
 // Dummy HTTP Mocks
-var q = require('../bower_components/q/q');
-var getProgramsMock = function() {
-	setTimeout(function() {
-		return ['Program 1', 'Program 2', 'Program 3'];
-	}, 1000);
+var Q = require('../bower_components/q/q');
+var getProgramsMock = function(callback) {
+  setTimeout(function() {
+    callback(['Program 1', 'Program 2', 'Program 3']);
+  }, 1000);
 };
 
 var scheduleProgramMock = function(callback) {
@@ -16,18 +16,22 @@ var scheduleProgramMock = function(callback) {
 var Programs = {
 
 	get: function () {
-		q.fcall(getProgramsMock).then(function (resolve, reject) {
 
-			return resolve // ????
+		return Q.Promise(function(resolve, reject){
 
-		});
-	}
+			getProgramsMock(resolve)
 
-//	schedule: function() {
-//
-//		return q.fcall(scheduleProgramMock)
-//
-//	}
+		})
+	},
+
+	schedule: function () {
+
+			return Q.Promise(function(resolve, reject){
+
+				scheduleProgramMock(resolve)
+
+			})
+		}
 
 };
 
@@ -35,9 +39,8 @@ var Programs = {
 // Client code
 Programs.get().then(function(programs) {
 	console.log('Received', programs);
+  });
+
+Programs.schedule('someProgramId').then(function(scheduled) {
+    console.log('Schedule result', scheduled);
 });
-
-//Programs.schedule('someProgramId').then(function(scheduled) {
-//    console.log('Schedule result', scheduled);
-//  });
-
