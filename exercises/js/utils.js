@@ -75,5 +75,4 @@ Utils.prototype.memorize = function (fn) {
 
 var utils = new Utils();
 
-
-////module.exports = utils;
+module.exports = utils;

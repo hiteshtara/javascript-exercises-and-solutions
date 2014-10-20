@@ -5,6 +5,10 @@
 </head>
 
 <body>
+
+<script>
+    console.info('i couldn\'t remove the "Uncaught ReferenceError: module is not defined"  message');
+</script>
 <script src="js/utils.js"></script>
 <script>
 
@@ -20,8 +24,10 @@
     memoizedFibonacci(5);
     // 2nd time, I shouldn't see any "Fib x" because the result should be cached
 
+
     var stooges = utils.extend({name:'moe'},{age:'50'});
-    console.dir(stooges) //should return a merged object
+    console.log(JSON.stringify(stooges, null, 2));
+
 
     var logger = function(msg) { console.log(msg); };
     var loggerCall = function(){ logger('my mesagge'); };
@@ -34,7 +40,7 @@
     };
 
     func = utils.bind(func, {name : 'Matias'});
-    func('Hi'); //===> expected: "hi: Matias"
+    func('hi'); //===> expected: "hi: Matias"
 
 </script>
 </body>
